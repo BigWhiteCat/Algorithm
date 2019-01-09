@@ -63,6 +63,10 @@ class ArrayListWithIterator : public LinearList<T> {
     int listSize;
 };
 
+/*!
+ * \brief ArrayListWithIterator<T>::ArrayListWithIterator
+ * \param initialCapacity
+ */
 template <typename T>
 ArrayListWithIterator<T>::ArrayListWithIterator(int initialCapacity) : listSize(0) {
     if (initialCapacity < 1) {
@@ -75,6 +79,10 @@ ArrayListWithIterator<T>::ArrayListWithIterator(int initialCapacity) : listSize(
     element = new T[arrayLength];
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::ArrayListWithIterator
+ * \param theArrayListWithIterator
+ */
 template <typename T>
 ArrayListWithIterator<T>::ArrayListWithIterator(const ArrayListWithIterator<T> &theArrayListWithIterator) {
     arrayLength = theArrayListWithIterator.arrayLength;
@@ -84,27 +92,48 @@ ArrayListWithIterator<T>::ArrayListWithIterator(const ArrayListWithIterator<T> &
     std::copy(theArrayListWithIterator.element, theArrayListWithIterator.element + listSize, element);
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::~ArrayListWithIterator
+ */
 template <typename T>
 ArrayListWithIterator<T>::~ArrayListWithIterator() {
     delete[] element;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::empty
+ * \return
+ */
 template <typename T>
 bool ArrayListWithIterator<T>::empty() const {
     return listSize == 0;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::size
+ * \return
+ */
 template <typename T>
 int ArrayListWithIterator<T>::size() const {
     return listSize;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::get
+ * \param theIndex
+ * \return
+ */
 template <typename T>
 T &ArrayListWithIterator<T>::get(int theIndex) const {
     checkIndex(theIndex);
     return element[theIndex];
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::indexOf
+ * \param theElement
+ * \return
+ */
 template <typename T>
 int ArrayListWithIterator<T>::indexOf(const T &theElement) const {
     int theIndex = static_cast<int>(std::find(element, element + listSize, theElement) - element);
@@ -116,6 +145,10 @@ int ArrayListWithIterator<T>::indexOf(const T &theElement) const {
     }
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::erase
+ * \param theIndex
+ */
 template <typename T>
 void ArrayListWithIterator<T>::erase(int theIndex) {
     checkIndex(theIndex);
@@ -124,6 +157,11 @@ void ArrayListWithIterator<T>::erase(int theIndex) {
     element[--listSize].~T();
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::insert
+ * \param theIndex
+ * \param theElement
+ */
 template <typename T>
 void ArrayListWithIterator<T>::insert(int theIndex, const T &theElement) {
     if (theIndex < 0 || theIndex > listSize) {
@@ -142,26 +180,46 @@ void ArrayListWithIterator<T>::insert(int theIndex, const T &theElement) {
     ++listSize;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::output
+ * \param out
+ */
 template <typename T>
 void ArrayListWithIterator<T>::output(std::ostream &out) const {
     std::copy(element, element + listSize, std::ostream_iterator<T>(std::cout, " "));
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::capacity
+ * \return
+ */
 template <typename T>
 int ArrayListWithIterator<T>::capacity() const {
     return arrayLength;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::begin
+ * \return
+ */
 template <typename T>
 typename ArrayListWithIterator<T>::Iterator ArrayListWithIterator<T>::begin() {
     return Iterator(element);
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::end
+ * \return
+ */
 template <typename T>
 typename ArrayListWithIterator<T>::Iterator ArrayListWithIterator<T>::end() {
     return Iterator(element + listSize);
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::checkIndex
+ * \param theIndex
+ */
 template <typename T>
 void ArrayListWithIterator<T>::checkIndex(int theIndex) const {
     if (theIndex < 0 || theIndex >= listSize) {
@@ -171,27 +229,47 @@ void ArrayListWithIterator<T>::checkIndex(int theIndex) const {
     }
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::Iterator
+ * \param thePosition
+ */
 template <typename T>
 ArrayListWithIterator<T>::Iterator::Iterator(T *thePosition) {
     position = thePosition;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::operator *
+ * \return
+ */
 template <typename T>
 T &ArrayListWithIterator<T>::Iterator::operator*() const {
     return *position;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::operator ->
+ * \return
+ */
 template <typename T>
 T *ArrayListWithIterator<T>::Iterator::operator->() const {
     return &(*position);
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::operator ++
+ * \return
+ */
 template <typename T>
 typename ArrayListWithIterator<T>::Iterator &ArrayListWithIterator<T>::Iterator::operator++() {
     ++position;
     return *this;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::operator ++
+ * \return
+ */
 template <typename T>
 typename ArrayListWithIterator<T>::Iterator ArrayListWithIterator<T>::Iterator::operator++(int) {
     Iterator old = *this;
@@ -199,12 +277,20 @@ typename ArrayListWithIterator<T>::Iterator ArrayListWithIterator<T>::Iterator::
     return old;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::operator --
+ * \return
+ */
 template <typename T>
 typename ArrayListWithIterator<T>::Iterator &ArrayListWithIterator<T>::Iterator::operator--() {
     --position;
     return *this;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::operator --
+ * \return
+ */
 template <typename T>
 typename ArrayListWithIterator<T>::Iterator ArrayListWithIterator<T>::Iterator::operator--(int) {
     Iterator old = *this;
@@ -212,19 +298,32 @@ typename ArrayListWithIterator<T>::Iterator ArrayListWithIterator<T>::Iterator::
     return old;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::operator ==
+ * \param rh
+ * \return
+ */
 template <typename T>
 bool ArrayListWithIterator<T>::Iterator::operator==(const Iterator rh) const {
     return position != rh.position;
 }
 
+/*!
+ * \brief ArrayListWithIterator<T>::Iterator::operator !=
+ * \param rh
+ * \return
+ */
 template <typename T>
 bool ArrayListWithIterator<T>::Iterator::operator!=(const Iterator rh) const {
     return !(*this == rh);
 }
 
 /*!
-  overload the <<
-*/
+ * \brief operator <<
+ * \param out
+ * \param theArrayListWithIterator
+ * \return
+ */
 template <typename T>
 std::ostream &operator<<(std::ostream &out, const ArrayListWithIterator<T> &theArrayListWithIterator) {
     theArrayListWithIterator.output(out);

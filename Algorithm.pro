@@ -1,9 +1,8 @@
 TEMPLATE = subdirs
 
-INCLUDEPATH += include
-
-
 SUBDIRS += \
     Exception \
     ArrayList \
-    ArrayListWithIterator
+    ArrayListWithIterator \
+    ArrayListNoSTL \
+    VectorList

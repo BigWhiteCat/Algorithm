@@ -1,24 +1,20 @@
-﻿#ifndef ARRAYLIST_H
-#define ARRAYLIST_H
+﻿#ifndef ARRAYLISTNOSTL_HPP
+#define ARRAYLISTNOSTL_HPP
 
-#include <algorithm>
-#include <iterator>
 #include <sstream>
 
 #include "../Exception/Exception.h"
 #include "../include/LinearList.hpp"
 #include "../include/changeLength1D.hpp"
 
-/*!
- * \brief The ArrayList class
- */
-template <typename T>
-class ArrayList : public LinearList<T> {
+template <class T>
+class ArrayListNoSTL : public LinearList<T> {
   public:
-    ArrayList(int initialCapacity = 10);
-    ArrayList(const ArrayList<T> &theArrayList);
-    ~ArrayList();
+    ArrayListNoSTL(int initialCapacity = 10);
+    ArrayListNoSTL(const ArrayListNoSTL<T> &theArrayListNoSTL);
+    ~ArrayListNoSTL();
 
+    /*! ADT */
     bool empty() const;
     int size() const;
     T &get(int theIndex) const;
@@ -26,10 +22,9 @@ class ArrayList : public LinearList<T> {
     void erase(int theIndex);
     void insert(int theIndex, const T &theElement);
     void output(std::ostream &out) const;
-
     int capacity() const;
 
-  protected:
+  private:
     void checkIndex(int theIndex) const;
     T *element;
     int arrayLength;
@@ -37,11 +32,11 @@ class ArrayList : public LinearList<T> {
 };
 
 /*!
- * \brief ArrayList<T>::ArrayList
+ * \brief ArrayListNoSTL<T>::ArrayListNoSTL
  * \param initialCapacity
  */
 template <typename T>
-ArrayList<T>::ArrayList(int initialCapacity) : listSize(0) {
+ArrayListNoSTL<T>::ArrayListNoSTL(int initialCapacity) {
     if (initialCapacity < 1) {
         std::ostringstream s;
         s << "Initial capacity = " << initialCapacity << " must be > 0";
@@ -50,93 +45,99 @@ ArrayList<T>::ArrayList(int initialCapacity) : listSize(0) {
 
     arrayLength = initialCapacity;
     element = new T[arrayLength];
+    listSize = 0;
 }
 
 /*!
- * \brief ArrayList<T>::ArrayList
- * \param theArrayList
+ * \brief ArrayListNoSTL<T>::ArrayListNoSTL
+ * \param theArrayListNoSTL
  */
 template <typename T>
-ArrayList<T>::ArrayList(const ArrayList<T> &theArrayList) {
-    arrayLength = theArrayList.arrayLength;
-    listSize = theArrayList.listSize;
+ArrayListNoSTL<T>::ArrayListNoSTL(const ArrayListNoSTL<T> &theArrayListNoSTL) {
+    arrayLength = theArrayListNoSTL.arrayLength;
+    listSize = theArrayListNoSTL.listSize;
     element = new T[arrayLength];
 
-    std::copy(theArrayList.element, theArrayList.element + listSize, element);
+    for (int i = 0; i != listSize; ++i) {
+        element[i] = theArrayListNoSTL.element[i];
+    }
 }
 
 /*!
- * \brief ArrayList<T>::~ArrayList
+ * \brief ArrayListNoSTL<T>::~ArrayListNoSTL
  */
 template <typename T>
-ArrayList<T>::~ArrayList() {
+ArrayListNoSTL<T>::~ArrayListNoSTL() {
     delete[] element;
 }
 
 /*!
- * \brief ArrayList<T>::empty
+ * \brief ArrayListNoSTL<T>::empty
  * \return
  */
 template <typename T>
-bool ArrayList<T>::empty() const {
+bool ArrayListNoSTL<T>::empty() const {
     return listSize == 0;
 }
 
 /*!
- * \brief ArrayList<T>::size
+ * \brief ArrayListNoSTL<T>::size
  * \return
  */
 template <typename T>
-int ArrayList<T>::size() const {
+int ArrayListNoSTL<T>::size() const {
     return listSize;
 }
 
 /*!
- * \brief ArrayList<T>::get
+ * \brief ArrayListNoSTL<T>::get
  * \param theIndex
  * \return
  */
 template <typename T>
-T &ArrayList<T>::get(int theIndex) const {
+T &ArrayListNoSTL<T>::get(int theIndex) const {
     checkIndex(theIndex);
     return element[theIndex];
 }
 
 /*!
- * \brief ArrayList<T>::indexOf
+ * \brief ArrayListNoSTL<T>::indexOf
  * \param theElement
  * \return
  */
 template <typename T>
-int ArrayList<T>::indexOf(const T &theElement) const {
-    int theIndex = static_cast<int>(std::find(element, element + listSize, theElement) - element);
-
-    if (theIndex == listSize) {
-        return -1;
-    } else {
-        return theIndex;
+int ArrayListNoSTL<T>::indexOf(const T &theElement) const {
+    for (int i = 0; i != listSize; ++i) {
+        if (element[i] == theElement) {
+            return i;
+        }
     }
+
+    return -1;
 }
 
 /*!
- * \brief ArrayList<T>::erase
+ * \brief ArrayListNoSTL<T>::erase
  * \param theIndex
  */
 template <typename T>
-void ArrayList<T>::erase(int theIndex) {
+void ArrayListNoSTL<T>::erase(int theIndex) {
     checkIndex(theIndex);
 
-    std::copy(element + theIndex + 1, element + listSize, element + theIndex);
+    for (int i = theIndex + 1; i != listSize; ++i) {
+        element[i - 1] = element[i];
+    }
+
     element[--listSize].~T();
 }
 
 /*!
- * \brief ArrayList<T>::insert
+ * \brief ArrayListNoSTL<T>::insert
  * \param theIndex
  * \param theElement
  */
 template <typename T>
-void ArrayList<T>::insert(int theIndex, const T &theElement) {
+void ArrayListNoSTL<T>::insert(int theIndex, const T &theElement) {
     if (theIndex < 0 || theIndex > listSize) {
         std::ostringstream s;
         s << "index = " << theIndex << " size = " << listSize;
@@ -145,38 +146,43 @@ void ArrayList<T>::insert(int theIndex, const T &theElement) {
 
     if (listSize == arrayLength) {
         changeLength1D(element, arrayLength, 2 * arrayLength);
-        arrayLength = 2 * arrayLength;
+        arrayLength = arrayLength * 2;
     }
 
-    std::copy_backward(element + theIndex, element + listSize, element + listSize + 1);
+    for (int i = listSize - 1; i >= theIndex; --i) {
+        element[i + 1] = element[i];
+    }
     element[theIndex] = theElement;
+
     ++listSize;
 }
 
 /*!
- * \brief ArrayList<T>::output
+ * \brief ArrayListNoSTL<T>::output
  * \param out
  */
 template <typename T>
-void ArrayList<T>::output(std::ostream &out) const {
-    std::copy(element, element + listSize, std::ostream_iterator<T>(std::cout, " "));
+void ArrayListNoSTL<T>::output(std::ostream &out) const {
+    for (int i = 0; i != listSize; ++i) {
+        out << element[i] << "  ";
+    }
 }
 
 /*!
- * \brief ArrayList<T>::capacity
+ * \brief ArrayListNoSTL<T>::capacity
  * \return
  */
 template <typename T>
-int ArrayList<T>::capacity() const {
+int ArrayListNoSTL<T>::capacity() const {
     return arrayLength;
 }
 
 /*!
- * \brief ArrayList<T>::checkIndex
+ * \brief ArrayListNoSTL<T>::checkIndex
  * \param theIndex
  */
 template <typename T>
-void ArrayList<T>::checkIndex(int theIndex) const {
+void ArrayListNoSTL<T>::checkIndex(int theIndex) const {
     if (theIndex < 0 || theIndex >= listSize) {
         std::ostringstream s;
         s << "index = " << theIndex << " size = " << listSize;
@@ -187,13 +193,13 @@ void ArrayList<T>::checkIndex(int theIndex) const {
 /*!
  * \brief operator <<
  * \param out
- * \param theArrayList
+ * \param theArrayListNoSTL
  * \return
  */
 template <typename T>
-std::ostream &operator<<(std::ostream &out, const ArrayList<T> &theArrayList) {
-    theArrayList.output(out);
+std::ostream &operator<<(std::ostream &out, const ArrayListNoSTL<T> &theArrayListNoSTL) {
+    theArrayListNoSTL.output(out);
     return out;
 }
 
-#endif  // ARRAYLIST_H
+#endif  // ARRAYLISTNOSTL_HPP

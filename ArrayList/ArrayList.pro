@@ -3,7 +3,7 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-LIBS += ../lib/libException.so
+LIBS += ../Exception/libException.so
 
 SOURCES += main.cpp \
 

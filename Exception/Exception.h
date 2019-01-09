@@ -3,6 +3,9 @@
 
 #include <string>
 
+/*!
+ * \brief The Exception class
+ */
 class Exception {
   public:
     virtual ~Exception();
@@ -10,6 +13,9 @@ class Exception {
     virtual void outputMessage() const = 0;
 };
 
+/*!
+ * \brief The IllegalParameterValue class
+ */
 class IllegalParameterValue : public Exception {
   public:
     IllegalParameterValue(const std::string theMessage = "Illegal parameter value");
@@ -19,6 +25,9 @@ class IllegalParameterValue : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The IllegalInputData class
+ */
 class IllegalInputData : public Exception {
   public:
     IllegalInputData(const std::string theMessage = "Illegal data input");
@@ -28,6 +37,9 @@ class IllegalInputData : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The IllegalIndex class
+ */
 class IllegalIndex : public Exception {
   public:
     IllegalIndex(std::string theMessage = "Illegal index");
@@ -37,6 +49,9 @@ class IllegalIndex : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The MatrixIndexOutofBounds class
+ */
 class MatrixIndexOutofBounds : public Exception {
   public:
     MatrixIndexOutofBounds(const std::string theMessage = "Matrix index out of bounds");
@@ -46,6 +61,9 @@ class MatrixIndexOutofBounds : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The MatrixSizeMismatch class
+ */
 class MatrixSizeMismatch : public Exception {
   public:
     MatrixSizeMismatch(const std::string theMessage = "The size of the two matrics doesn't match");
@@ -55,6 +73,9 @@ class MatrixSizeMismatch : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The StackEmpty class
+ */
 class StackEmpty : public Exception {
   public:
     StackEmpty(const std::string theMessage = "Invalid operation on empty stack");
@@ -64,6 +85,9 @@ class StackEmpty : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The QueueEmpty class
+ */
 class QueueEmpty : public Exception {
   public:
     QueueEmpty(const std::string theMessage = "Invalid operation on empty queue");
@@ -73,6 +97,9 @@ class QueueEmpty : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The HashTableFull class
+ */
 class HashTableFull : public Exception {
   public:
     HashTableFull(const std::string theMessage = "The hash table is full");
@@ -82,6 +109,9 @@ class HashTableFull : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The UndefinedEdgeWeight class
+ */
 class UndefinedEdgeWeight : public Exception {
   public:
     UndefinedEdgeWeight(const std::string theMessage = "No edge weights defined");
@@ -91,6 +121,9 @@ class UndefinedEdgeWeight : public Exception {
     std::string message;
 };
 
+/*!
+ * \brief The UndefinedMethod class
+ */
 class UndefinedMethod : public Exception {
   public:
     UndefinedMethod(const std::string theMessage = "This method is undefined");
