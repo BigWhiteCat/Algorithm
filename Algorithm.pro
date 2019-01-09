@@ -5,4 +5,5 @@ INCLUDEPATH += include
 
 SUBDIRS += \
     Exception \
-    ArrayList
+    ArrayList \
+    ArrayListWithIterator

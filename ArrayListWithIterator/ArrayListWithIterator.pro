@@ -5,10 +5,12 @@ CONFIG -= qt
 
 LIBS += ../lib/libException.so
 
-SOURCES += main.cpp \
+SOURCES += \
+        main.cpp
 
 HEADERS += \
-    ArrayList.hpp
+    ArrayListWithIterator.hpp
+
 
 target.path = ../bin
 target.uninstall = @echo "uninstall"

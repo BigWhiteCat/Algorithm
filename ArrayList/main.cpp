@@ -16,14 +16,16 @@ int main() {
     std::cout << "Initial size of x, y, and z = " << x->size() << ", " << y.size() << ", " << z.size() << std::endl;
 
     // test empty
-    if (x->empty())
+    if (x->empty()) {
         std::cout << "x is empty" << std::endl;
-    else
+    } else {
         std::cout << "x is not empty" << std::endl;
-    if (y.empty())
+    }
+    if (y.empty()) {
         std::cout << "y is empty" << std::endl;
-    else
+    } else {
         std::cout << "y is not empty" << std::endl;
+    }
 
     // test insert
     y.insert(0, 2);
@@ -35,26 +37,29 @@ int main() {
     std::cout << "Inserted 6 integers, list y should be 1 2 3 4 5 6" << std::endl;
     std::cout << "Size of y = " << y.size() << std::endl;
     std::cout << "Capacity of y = " << y.capacity() << std::endl;
-    if (y.empty())
+    if (y.empty()) {
         std::cout << "y is empty" << std::endl;
-    else
+    } else {
         std::cout << "y is not empty" << std::endl;
+    }
     y.output(std::cout);
     std::cout << std::endl << "Testing overloaded <<" << std::endl;
     std::cout << y << std::endl;
 
     // test indexOf
     int index = y.indexOf(4);
-    if (index < 0)
+    if (index < 0) {
         std::cout << "4 not found" << std::endl;
-    else
+    } else {
         std::cout << "The index of 4 is " << index << std::endl;
+    }
 
     index = y.indexOf(7);
-    if (index < 0)
+    if (index < 0) {
         std::cout << "7 not found" << std::endl;
-    else
+    } else {
         std::cout << "The index of 7 is " << index << std::endl;
+    }
 
     // test get
     std::cout << "Element with index 0 is " << y.get(0) << std::endl;
@@ -70,10 +75,11 @@ int main() {
 
     std::cout << "Size of y = " << y.size() << std::endl;
     std::cout << "Capacity of y = " << y.capacity() << std::endl;
-    if (y.empty())
+    if (y.empty()) {
         std::cout << "y is empty" << std::endl;
-    else
+    } else {
         std::cout << "y is not empty" << std::endl;
+    }
 
     try {
         y.insert(-3, 0);
