@@ -6,6 +6,12 @@
 
 #include "../Exception/Exception.h"
 
+/*!
+ * \brief changeLength1D
+ * \param a
+ * \param oldLength
+ * \param newLength
+ */
 template <typename T>
 void changeLength1D(T *&a, int oldLength, int newLength) {
     if (newLength < 0) {

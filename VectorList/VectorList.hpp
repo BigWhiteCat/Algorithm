@@ -29,13 +29,16 @@ class VectorList : public LinearList<T> {
     void output(std::ostream &out) const;
     int capacity() const;
 
+    /*!
+     * \brief iterator
+     */
     typedef typename std::vector<T>::iterator iterator;
     iterator begin();
     iterator end();
 
   private:
     void checkIndex(int theIndex) const;
-    std::vector<T> *element;
+    std::vector<T> *element; /*!<*/
 };
 
 /*!

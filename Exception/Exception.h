@@ -8,8 +8,14 @@
  */
 class Exception {
   public:
+    /*!
+     * \brief ~Exception
+     */
     virtual ~Exception();
 
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const = 0;
 };
 
@@ -18,11 +24,18 @@ class Exception {
  */
 class IllegalParameterValue : public Exception {
   public:
+    /*!
+     * \brief IllegalParameterValue
+     * \param theMessage
+     */
     IllegalParameterValue(const std::string theMessage = "Illegal parameter value");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -30,11 +43,18 @@ class IllegalParameterValue : public Exception {
  */
 class IllegalInputData : public Exception {
   public:
+    /*!
+     * \brief IllegalInputData
+     * \param theMessage
+     */
     IllegalInputData(const std::string theMessage = "Illegal data input");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -42,11 +62,18 @@ class IllegalInputData : public Exception {
  */
 class IllegalIndex : public Exception {
   public:
+    /*!
+     * \brief IllegalIndex
+     * \param theMessage
+     */
     IllegalIndex(std::string theMessage = "Illegal index");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -54,11 +81,18 @@ class IllegalIndex : public Exception {
  */
 class MatrixIndexOutofBounds : public Exception {
   public:
+    /*!
+     * \brief MatrixIndexOutofBounds
+     * \param theMessage
+     */
     MatrixIndexOutofBounds(const std::string theMessage = "Matrix index out of bounds");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -66,11 +100,18 @@ class MatrixIndexOutofBounds : public Exception {
  */
 class MatrixSizeMismatch : public Exception {
   public:
+    /*!
+     * \brief MatrixSizeMismatch
+     * \param theMessage
+     */
     MatrixSizeMismatch(const std::string theMessage = "The size of the two matrics doesn't match");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -78,11 +119,18 @@ class MatrixSizeMismatch : public Exception {
  */
 class StackEmpty : public Exception {
   public:
+    /*!
+     * \brief StackEmpty
+     * \param theMessage
+     */
     StackEmpty(const std::string theMessage = "Invalid operation on empty stack");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -90,11 +138,18 @@ class StackEmpty : public Exception {
  */
 class QueueEmpty : public Exception {
   public:
+    /*!
+     * \brief QueueEmpty
+     * \param theMessage
+     */
     QueueEmpty(const std::string theMessage = "Invalid operation on empty queue");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -102,11 +157,18 @@ class QueueEmpty : public Exception {
  */
 class HashTableFull : public Exception {
   public:
+    /*!
+     * \brief HashTableFull
+     * \param theMessage
+     */
     HashTableFull(const std::string theMessage = "The hash table is full");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -114,11 +176,18 @@ class HashTableFull : public Exception {
  */
 class UndefinedEdgeWeight : public Exception {
   public:
+    /*!
+     * \brief UndefinedEdgeWeight
+     * \param theMessage
+     */
     UndefinedEdgeWeight(const std::string theMessage = "No edge weights defined");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 /*!
@@ -126,11 +195,18 @@ class UndefinedEdgeWeight : public Exception {
  */
 class UndefinedMethod : public Exception {
   public:
+    /*!
+     * \brief UndefinedMethod
+     * \param theMessage
+     */
     UndefinedMethod(const std::string theMessage = "This method is undefined");
+    /*!
+     * \brief outputMessage
+     */
     virtual void outputMessage() const override;
 
   private:
-    std::string message;
+    std::string message; /*!<*/
 };
 
 #endif  // EXCEPTION_H

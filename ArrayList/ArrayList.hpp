@@ -31,9 +31,9 @@ class ArrayList : public LinearList<T> {
 
   protected:
     void checkIndex(int theIndex) const;
-    T *element;
-    int arrayLength;
-    int listSize;
+    T *element;      /*!< pointer*/
+    int arrayLength; /*!< array length*/
+    int listSize;    /*!< the size of array list*/
 };
 
 /*!

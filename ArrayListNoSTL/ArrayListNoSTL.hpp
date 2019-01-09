@@ -7,6 +7,9 @@
 #include "../include/LinearList.hpp"
 #include "../include/changeLength1D.hpp"
 
+/*!
+ * \brief The ArrayListNoSTL class
+ */
 template <class T>
 class ArrayListNoSTL : public LinearList<T> {
   public:
@@ -26,9 +29,9 @@ class ArrayListNoSTL : public LinearList<T> {
 
   private:
     void checkIndex(int theIndex) const;
-    T *element;
-    int arrayLength;
-    int listSize;
+    T *element;      /*!<*/
+    int arrayLength; /*!<*/
+    int listSize;    /*!<*/
 };
 
 /*!

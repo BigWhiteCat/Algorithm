@@ -9,6 +9,9 @@
 #include "../include/LinearList.hpp"
 #include "../include/changeLength1D.hpp"
 
+/*!
+ * \brief The ArrayListWithIterator class
+ */
 template <typename T>
 class ArrayListWithIterator : public LinearList<T> {
   public:
@@ -30,12 +33,30 @@ class ArrayListWithIterator : public LinearList<T> {
     Iterator begin();
     Iterator end();
 
+    /*!
+     * \brief The Iterator class
+     */
     class Iterator {
       public:
+        /*!
+         * iterator category
+         */
         using iterator_category = std::bidirectional_iterator_tag;
+        /*!
+         * value type
+         */
         using value_type = T;
+        /*!
+         * difference type
+         */
         using difference_type = std::ptrdiff_t;
+        /*!
+         * pointer
+         */
         using pointer = T *;
+        /*!
+         * reference
+         */
         using reference = T &;
 
         Iterator(T *thePosition = nullptr);
@@ -53,14 +74,14 @@ class ArrayListWithIterator : public LinearList<T> {
         bool operator!=(const Iterator rh) const;
 
       protected:
-        T *position;
+        T *position; /*!< pointer */
     };
 
   protected:
     void checkIndex(int theIndex) const;
-    T *element;
-    int arrayLength;
-    int listSize;
+    T *element;      /*!< pointer */
+    int arrayLength; /*!< array length*/
+    int listSize;    /*!< the size of array */
 };
 
 /*!
