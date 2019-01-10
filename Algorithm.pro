@@ -9,4 +9,5 @@ SUBDIRS += \
     ArrayList \
     ArrayListWithIterator \
     ArrayListNoSTL \
-    VectorList
+    VectorList \
+    Chain
