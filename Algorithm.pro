@@ -3,6 +3,7 @@ TEMPLATE = subdirs
 HEADERS += \
            include/LinearList.hpp \
            include/changeLength1D.hpp \
+           include/ExtendedLinearList.hpp \
 
 SUBDIRS += \
     Exception \
@@ -10,4 +11,5 @@ SUBDIRS += \
     ArrayListWithIterator \
     ArrayListNoSTL \
     VectorList \
-    Chain
+    Chain \
+    ChainWithIterator
