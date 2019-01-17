@@ -50,7 +50,7 @@ class Chain : public LinearList<T> {
         ChainNode<T> *node;
     };
 
-  private:
+  protected:
     void checkIndex(int theIndex) const;
     ChainNode<T> *firstNode; /*!< first node of chain*/
     int listSize;            /*!< the size of chain*/

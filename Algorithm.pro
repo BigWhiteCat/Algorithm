@@ -12,4 +12,10 @@ SUBDIRS += \
     ArrayListNoSTL \
     VectorList \
     Chain \
-    ChainWithIterator
+    ChainWithIterator \
+    # ExtendedChain \
+    CircularListWithHeader \
+    BinSort \
+    BinSort2 \
+    IrregualrArray \
+    Matrix

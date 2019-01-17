@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = 
 CFLAGS        = -pipe -O2 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -std=gnu++11 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I../ChainWithIterator -I/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/linux-g++
+INCPATH       = -I. -I/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/linux-g++
 QMAKE         = /opt/qt5.10/install/5.10.1/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -215,7 +215,7 @@ DIST          = /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/spec_pre.prf 
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/qt_config.prf \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
+		../.qmake.stash \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/toolchain.prf \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -403,7 +403,7 @@ Makefile: ExtendedChain.pro /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/linux-g++/
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/qt_config.prf \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
+		../.qmake.stash \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/toolchain.prf \
 		/opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/default_pre.prf \
@@ -581,7 +581,7 @@ Makefile: ExtendedChain.pro /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/linux-g++/
 /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/qt_config.prf:
 /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/linux-g++/qmake.conf:
 /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
+../.qmake.stash:
 /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/exclusive_builds.prf:
 /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/toolchain.prf:
 /opt/qt5.10/install/5.10.1/gcc_64/mkspecs/features/default_pre.prf:
@@ -618,7 +618,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -639,10 +638,10 @@ compiler_clean:
 ####### Compile
 
 main.o: main.cpp ExtendedChain.hpp \
+		../ChainWithIterator/ChainNode.hpp \
 		../ChainWithIterator/ChainWithIterator.hpp \
 		../Exception/Exception.h \
 		../include/LinearList.hpp \
-		../ChainWithIterator/ChainNode.hpp \
 		../include/ExtendedLinearList.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
